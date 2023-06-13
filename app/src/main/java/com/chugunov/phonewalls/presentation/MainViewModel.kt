@@ -22,18 +22,33 @@ class MainViewModel : ViewModel() {
     private val _categoryList = MutableLiveData<ArrayList<Category>>()
     val categoryList: MutableLiveData<ArrayList<Category>> = _categoryList
 
+    private val _paramsCategory = MutableLiveData<String>()
+    val paramsCategory: LiveData<String> = _paramsCategory
+
     private var _imagesList = MutableLiveData<List<UnsplashPhoto>>()
     val imagesList: LiveData<List<UnsplashPhoto>> = _imagesList
 
+    fun setParams(params: String) {
+        _paramsCategory.value = params
+    }
     init {
         _categoryList.value = getCategoryListUseCase.getCategoryListUseCase().value
-        viewModelScope.launch {
-            _imagesList.value = getImages()
-        }
+//        viewModelScope.launch {
+//            _imagesList.value = getImages()
+//        }
     }
 
-    private suspend fun getImages(): List<UnsplashPhoto> {
-        val response = getImagesUseCase.getImagesUseCase("cars")
+//    fun getParams(params: String) {
+//        _paramsCategory.value = params
+//    }
+
+//    private suspend fun getImages(): List<UnsplashPhoto> {
+//        val response = getImagesUseCase.getImagesUseCase(_paramsCategory.value.toString())
+//        Log.d("Response", "Response: $response")
+//        return response.results
+//    }
+    suspend fun getImages(params: String): List<UnsplashPhoto> {
+        val response = getImagesUseCase.getImagesUseCase(params)
         Log.d("Response", "Response: $response")
         return response.results
     }

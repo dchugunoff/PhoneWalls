@@ -10,7 +10,7 @@ data class Category(
 ) {
     companion object {
         val categories = arrayListOf(
-            Category("Cars", R.drawable.cars_category, "cars"),
+            Category("Cars", R.drawable.cars_category, "car"),
             Category("Cats", R.drawable.cats_category, "cat"),
             Category("Cyberpunk", R.drawable.cyberpunk_category, "cyberpunk"),
         )

@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.chugunov.phonewalls.databinding.FragmentImagesBinding
+import com.chugunov.phonewalls.domain.model.Category
+import kotlinx.coroutines.launch
 
 class ImagesFragment : Fragment() {
 
@@ -17,8 +20,17 @@ class ImagesFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
 
+    private lateinit var params: String
+
     private val imagesAdapter: ImagesAdapter by lazy {
         ImagesAdapter()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            params = it.getString(PARAMS_KEY) ?: ""
+        }
     }
 
     override fun onCreateView(
@@ -34,8 +46,14 @@ class ImagesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.imagesRecyclerView.adapter = imagesAdapter
+        viewModel.setParams(params)
         viewModel.imagesList.observe(viewLifecycleOwner) { newList ->
             imagesAdapter.submitList(newList)
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getImages(params).let {
+                imagesAdapter.submitList(it)
+            }
         }
     }
 
@@ -43,5 +61,16 @@ class ImagesFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object {
+        const val PARAMS_KEY = "params"
+        fun newInstance(category: Category): ImagesFragment {
+            val fragment = ImagesFragment()
+            val args = Bundle()
+            args.putString(PARAMS_KEY, category.params)
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

@@ -1,14 +1,15 @@
 package com.chugunov.phonewalls.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.chugunov.phonewalls.R
 import com.chugunov.phonewalls.databinding.FragmentCategorySelectionBinding
 import com.chugunov.phonewalls.domain.model.Category
+import com.chugunov.phonewalls.presentation.ImagesFragment.Companion.newInstance
 
 class CategorySelectionFragment : Fragment() {
 
@@ -34,9 +35,12 @@ class CategorySelectionFragment : Fragment() {
         binding.recyclerView.adapter = categoryAdapter
         categoryAdapter.setOnItemClickListener(object : CategoryAdapter.OnCategoryClickListener {
             override fun onItemClick(category: Category) {
-                Log.d("Fragment", "$category")
+                val fragment = newInstance(category)
+                val transaction = parentFragmentManager.beginTransaction()
+                transaction.replace(R.id.nav_host_fragment_container, fragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
-
         })
     }
 
