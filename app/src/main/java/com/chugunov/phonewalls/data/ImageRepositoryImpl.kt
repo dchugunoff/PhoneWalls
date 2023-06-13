@@ -4,11 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import com.chugunov.phonewalls.data.ImageFactory.imageService
 import com.chugunov.phonewalls.domain.ImageRepository
 import com.chugunov.phonewalls.domain.model.Category
-import com.chugunov.phonewalls.domain.model.ImageResponse
+import com.chugunov.phonewalls.domain.model.UnsplashResponse
 
 class ImageRepositoryImpl() : ImageRepository {
 
-    override suspend fun getImages(query: String): ImageResponse {
+    override suspend fun getImages(query: String): UnsplashResponse {
         return imageService.getImages(query = query)
     }
 

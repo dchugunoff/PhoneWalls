@@ -4,11 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.chugunov.phonewalls.domain.model.Category
 import com.chugunov.phonewalls.databinding.CategoryItemCardBinding
+import com.chugunov.phonewalls.domain.model.Category
 
-class CategoryAdapter(private val categoryList: MutableLiveData<ArrayList<Category>>) :
+class CategoryAdapter(
+    private val categoryList: MutableLiveData<ArrayList<Category>>
+) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+
+    var itemClickListener: OnCategoryClickListener? = null
+
+    fun setOnItemClickListener(listener: OnCategoryClickListener) {
+        itemClickListener = listener
+    }
 
 
     class CategoryViewHolder(private val binding: CategoryItemCardBinding) :
@@ -33,6 +41,15 @@ class CategoryAdapter(private val categoryList: MutableLiveData<ArrayList<Catego
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categoryList.value?.get(position)
-        category?.let { holder.bind(it) }
+        category?.let {
+            holder.bind(it)
+            holder.itemView.setOnClickListener {
+                itemClickListener?.onItemClick(category)
+            }
+        }
+    }
+
+    interface OnCategoryClickListener {
+        fun onItemClick(category: Category)
     }
 }

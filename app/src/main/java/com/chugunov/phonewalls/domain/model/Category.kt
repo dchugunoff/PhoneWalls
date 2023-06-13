@@ -9,11 +9,10 @@ data class Category(
     val params: String
 ) {
     companion object {
-        const val CONST_PARAMS = "wallpapers+phone"
         val categories = arrayListOf(
-            Category("Cars", R.drawable.cars_category, "cars+$CONST_PARAMS"),
-            Category("Cats", R.drawable.cats_category, "cat+$CONST_PARAMS"),
-            Category("Cyberpunk", R.drawable.cyberpunk_category, "cyberpunk+$CONST_PARAMS"),
+            Category("Cars", R.drawable.cars_category, "cars"),
+            Category("Cats", R.drawable.cats_category, "cat"),
+            Category("Cyberpunk", R.drawable.cyberpunk_category, "cyberpunk"),
         )
     }
 }

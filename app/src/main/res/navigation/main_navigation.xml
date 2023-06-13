@@ -8,4 +8,8 @@
         android:id="@+id/categorySelectionFragment"
         android:name="com.chugunov.phonewalls.presentation.CategorySelectionFragment"
         android:label="CategorySelectionFragment" />
+    <fragment
+        android:id="@+id/imagesFragment"
+        android:name="com.chugunov.phonewalls.presentation.ImagesFragment"
+        android:label="ImagesFragment" />
 </navigation>
