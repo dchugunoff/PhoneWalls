@@ -12,7 +12,7 @@ class CategoryAdapter(
 ) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
-    var itemClickListener: OnCategoryClickListener? = null
+    private var itemClickListener: OnCategoryClickListener? = null
 
     fun setOnItemClickListener(listener: OnCategoryClickListener) {
         itemClickListener = listener

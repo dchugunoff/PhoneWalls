@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.chugunov.phonewalls.R
 import com.chugunov.phonewalls.databinding.FragmentImagesBinding
 import com.chugunov.phonewalls.domain.model.Category
+import com.chugunov.phonewalls.domain.model.UnsplashPhoto
 import kotlinx.coroutines.launch
 
 class ImagesFragment : Fragment() {
@@ -55,6 +57,16 @@ class ImagesFragment : Fragment() {
                 imagesAdapter.submitList(it)
             }
         }
+        imagesAdapter.setOnImageClickListener(object : ImagesAdapter.OnImageClickListener {
+            override fun onImageClick(image: UnsplashPhoto) {
+                val fragment = SelectedImageFragment.newInstance(image)
+                val transaction = parentFragmentManager.beginTransaction()
+                transaction.replace(R.id.nav_host_fragment_container, fragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
+
+        })
     }
 
 

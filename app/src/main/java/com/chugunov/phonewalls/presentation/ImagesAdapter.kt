@@ -1,5 +1,6 @@
 package com.chugunov.phonewalls.presentation
 
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,6 +12,12 @@ import com.chugunov.phonewalls.domain.model.UnsplashPhoto
 
 class ImagesAdapter :
     ListAdapter<UnsplashPhoto, ImagesAdapter.ImagesViewHolder>(ImagesDiffCallBack()) {
+
+    private var imageClickListener: OnImageClickListener? = null
+
+    fun setOnImageClickListener(listener: OnImageClickListener) {
+        imageClickListener = listener
+    }
 
     class ImagesViewHolder(private val binding: ImagesCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -45,6 +52,13 @@ class ImagesAdapter :
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
         val image = getItem(position)
         holder.bind(image)
+        holder.itemView.setOnClickListener {
+            imageClickListener?.onImageClick(image)
+        }
+    }
+
+    interface OnImageClickListener {
+        fun onImageClick(image: UnsplashPhoto)
     }
 
 }

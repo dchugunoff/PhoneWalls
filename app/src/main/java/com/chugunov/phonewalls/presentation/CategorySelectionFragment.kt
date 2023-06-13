@@ -35,7 +35,7 @@ class CategorySelectionFragment : Fragment() {
         binding.recyclerView.adapter = categoryAdapter
         categoryAdapter.setOnItemClickListener(object : CategoryAdapter.OnCategoryClickListener {
             override fun onItemClick(category: Category) {
-                val fragment = newInstance(category)
+                val fragment = ImagesFragment.newInstance(category)
                 val transaction = parentFragmentManager.beginTransaction()
                 transaction.replace(R.id.nav_host_fragment_container, fragment)
                 transaction.addToBackStack(null)
