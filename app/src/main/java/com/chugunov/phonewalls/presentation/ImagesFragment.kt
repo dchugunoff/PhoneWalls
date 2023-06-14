@@ -1,20 +1,21 @@
 package com.chugunov.phonewalls.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import com.chugunov.phonewalls.R
+import androidx.navigation.fragment.findNavController
 import com.chugunov.phonewalls.databinding.FragmentImagesBinding
-import com.chugunov.phonewalls.domain.model.Category
 import com.chugunov.phonewalls.domain.model.UnsplashPhoto
 import kotlinx.coroutines.launch
 
 class ImagesFragment : Fragment() {
+
+
+    private lateinit var params: String
 
     private var _binding: FragmentImagesBinding? = null
     private val binding: FragmentImagesBinding
@@ -22,7 +23,6 @@ class ImagesFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
 
-    private lateinit var params: String
 
     private val imagesAdapter: ImagesAdapter by lazy {
         ImagesAdapter()
@@ -31,7 +31,7 @@ class ImagesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            params = it.getString(PARAMS_KEY) ?: ""
+            params = it.getString("params", "")
         }
     }
 
@@ -41,7 +41,6 @@ class ImagesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentImagesBinding.inflate(inflater, container, false)
-        Log.d("Response", "Fragment OnCreateView()")
         return binding.root
     }
 
@@ -59,11 +58,9 @@ class ImagesFragment : Fragment() {
         }
         imagesAdapter.setOnImageClickListener(object : ImagesAdapter.OnImageClickListener {
             override fun onImageClick(image: UnsplashPhoto) {
-                val fragment = SelectedImageFragment.newInstance(image)
-                val transaction = parentFragmentManager.beginTransaction()
-                transaction.replace(R.id.nav_host_fragment_container, fragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
+                val action =
+                    ImagesFragmentDirections.actionImagesFragmentToSelectedImageFragment(image)
+                findNavController().navigate(action)
             }
 
         })
@@ -75,14 +72,4 @@ class ImagesFragment : Fragment() {
         _binding = null
     }
 
-    companion object {
-        const val PARAMS_KEY = "params"
-        fun newInstance(category: Category): ImagesFragment {
-            val fragment = ImagesFragment()
-            val args = Bundle()
-            args.putString(PARAMS_KEY, category.params)
-            fragment.arguments = args
-            return fragment
-        }
-    }
 }

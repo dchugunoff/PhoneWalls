@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.chugunov.phonewalls.R
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import com.chugunov.phonewalls.databinding.FragmentCategorySelectionBinding
 import com.chugunov.phonewalls.domain.model.Category
-import com.chugunov.phonewalls.presentation.ImagesFragment.Companion.newInstance
 
 class CategorySelectionFragment : Fragment() {
 
@@ -35,11 +35,14 @@ class CategorySelectionFragment : Fragment() {
         binding.recyclerView.adapter = categoryAdapter
         categoryAdapter.setOnItemClickListener(object : CategoryAdapter.OnCategoryClickListener {
             override fun onItemClick(category: Category) {
-                val fragment = ImagesFragment.newInstance(category)
-                val transaction = parentFragmentManager.beginTransaction()
-                transaction.replace(R.id.nav_host_fragment_container, fragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
+                val action =
+                    CategorySelectionFragmentDirections.actionCategorySelectionFragmentToImagesFragment(
+                        category.params
+                    )
+                val navOptions = NavOptions.Builder()
+                    .setLaunchSingleTop(true)
+                    .build()
+                findNavController().navigate(action, navOptions)
             }
         })
     }

@@ -1,6 +1,5 @@
 package com.chugunov.phonewalls.presentation
 
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -28,7 +27,7 @@ class ImagesAdapter :
 
     }
 
-    class ImagesDiffCallBack: DiffUtil.ItemCallback<UnsplashPhoto>() {
+    class ImagesDiffCallBack : DiffUtil.ItemCallback<UnsplashPhoto>() {
         override fun areItemsTheSame(oldItem: UnsplashPhoto, newItem: UnsplashPhoto): Boolean {
             return oldItem.id == newItem.id
         }

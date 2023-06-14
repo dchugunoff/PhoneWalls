@@ -7,9 +7,29 @@
     <fragment
         android:id="@+id/categorySelectionFragment"
         android:name="com.chugunov.phonewalls.presentation.CategorySelectionFragment"
-        android:label="CategorySelectionFragment" />
+        android:label="CategorySelectionFragment" >
+        <action
+            android:id="@+id/action_categorySelectionFragment_to_imagesFragment"
+            app:destination="@id/imagesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/imagesFragment"
         android:name="com.chugunov.phonewalls.presentation.ImagesFragment"
-        android:label="ImagesFragment" />
+        android:label="ImagesFragment" >
+        <action
+            android:id="@+id/action_imagesFragment_to_selectedImageFragment"
+            app:destination="@id/selectedImageFragment" />
+        <argument
+            android:name="params"
+            app:argType="string"
+            android:defaultValue=" " />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedImageFragment"
+        android:name="com.chugunov.phonewalls.presentation.SelectedImageFragment"
+        android:label="SelectedImageFragment" >
+        <argument
+            android:name="imageArgs"
+            app:argType="com.chugunov.phonewalls.domain.model.UnsplashPhoto" />
+    </fragment>
 </navigation>
