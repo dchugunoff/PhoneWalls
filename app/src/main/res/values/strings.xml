@@ -3,4 +3,6 @@
     <string name="wallpaper">Wallpaper</string>
     <string name="lock_screen">Lock screen</string>
     <string name="wallpaper_and_lock_screen">Wallpaper and lock screen</string>
+    <string name="download">Download</string>
+    <string name="set_as_wallpaper">set as wallpaper</string>
 </resources>
