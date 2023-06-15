@@ -32,4 +32,8 @@
             android:name="imageArgs"
             app:argType="com.chugunov.phonewalls.domain.model.UnsplashPhoto" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment2"
+        android:name="com.chugunov.phonewalls.presentation.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
