@@ -6,4 +6,6 @@
     <string name="download">Download</string>
     <string name="set_as_wallpaper">set</string>
     <string name="apply_to">Apply to</string>
+    <string name="settings">Settings</string>
+    <string name="categories">Categories</string>
 </resources>

@@ -6,4 +6,6 @@
     <string name="download">Скачать</string>
     <string name="set_as_wallpaper">Установить</string>
     <string name="apply_to">Применить к</string>
+    <string name="settings">Настройки</string>
+    <string name="categories">Категории</string>
 </resources>
