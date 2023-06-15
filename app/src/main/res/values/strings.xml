@@ -4,5 +4,6 @@
     <string name="lock_screen">Lock screen</string>
     <string name="wallpaper_and_lock_screen">Wallpaper and lock screen</string>
     <string name="download">Download</string>
-    <string name="set_as_wallpaper">set as wallpaper</string>
+    <string name="set_as_wallpaper">set</string>
+    <string name="apply_to">Apply to</string>
 </resources>

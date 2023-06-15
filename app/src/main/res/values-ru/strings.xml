@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PhoneWalls</string>
+    <string name="wallpaper">Главный экран</string>
+    <string name="lock_screen">Экран блокировки</string>
+    <string name="wallpaper_and_lock_screen">Домашний экран и экран блокировки</string>
+    <string name="download">Скачать</string>
+    <string name="set_as_wallpaper">Установить</string>
+    <string name="apply_to">Применить к</string>
+</resources>

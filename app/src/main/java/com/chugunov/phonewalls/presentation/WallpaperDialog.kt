@@ -22,7 +22,7 @@ class WallpaperDialog(private val context: Context) {
         binding.wallpaper.isChecked = true
 
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Apply to")
+        builder.setTitle(context.getString(R.string.apply_to))
             .setView(binding.root)
             .setPositiveButton("Apply") { dialog, _ ->
                 val selectedOption = when (binding.radioGroup.checkedRadioButtonId) {
