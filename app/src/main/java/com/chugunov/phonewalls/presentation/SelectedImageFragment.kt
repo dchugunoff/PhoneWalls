@@ -1,7 +1,5 @@
 package com.chugunov.phonewalls.presentation
 
-import android.app.WallpaperManager
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,8 +29,10 @@ class SelectedImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.selectedImage.load(args.imageArgs.urls.full)
-
+        val imageUrl = args.imageArgs.urls.full
+        binding.selectedImage.load(imageUrl) {
+            crossfade(true)
+        }
         binding.setWallpaperButton.setOnClickListener {
             val wallpaperDialog = WallpaperDialog(requireContext())
             val imageDrawable = binding.selectedImage.drawable
@@ -40,10 +40,9 @@ class SelectedImageFragment : Fragment() {
         }
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 }
-
-

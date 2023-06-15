@@ -8,9 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import coil.Coil
+import coil.request.ImageRequest
 import com.chugunov.phonewalls.databinding.FragmentImagesBinding
 import com.chugunov.phonewalls.domain.model.UnsplashPhoto
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ImagesFragment : Fragment() {
 
@@ -52,8 +56,10 @@ class ImagesFragment : Fragment() {
             imagesAdapter.submitList(newList)
         }
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getImages(params).let {
-                imagesAdapter.submitList(it)
+            val imagesToPreload = viewModel.getImages(params)
+            imagesAdapter.submitList(imagesToPreload)
+            withContext(Dispatchers.IO) {
+                preloadImages(imagesToPreload)
             }
         }
         imagesAdapter.setOnImageClickListener(object : ImagesAdapter.OnImageClickListener {
@@ -70,6 +76,16 @@ class ImagesFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private suspend fun preloadImages(images: List<UnsplashPhoto>) {
+        val imageLoader = Coil.imageLoader(requireContext())
+        for (image in images) {
+            val request = ImageRequest.Builder(requireContext())
+                .data(image.urls.full)
+                .build()
+            imageLoader.execute(request)
+        }
     }
 
 }
