@@ -4,12 +4,10 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -33,7 +31,8 @@ class SelectedImageFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bottom_nav_view)?.visibility = View.GONE
+        (activity as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bottom_nav_view)?.visibility =
+            View.GONE
         _binding = FragmentSelectedImageBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -76,7 +75,8 @@ class SelectedImageFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        (activity as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bottom_nav_view)?.visibility = View.VISIBLE
+        (activity as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bottom_nav_view)?.visibility =
+            View.VISIBLE
     }
 
     override fun onRequestPermissionsResult(
