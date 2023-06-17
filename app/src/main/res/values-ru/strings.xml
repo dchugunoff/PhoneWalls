@@ -10,6 +10,10 @@
     <string name="categories">Категории</string>
     <string name="language_english">Английский</string>
     <string name="language_russian">Русский</string>
-    <string name="language_key">language</string>
     <string name="select_language">Выберите язык</string>
+    <string name="theme_settings">Настройки темы</string>
+    <string name="select_theme">Выберите тему</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="theme_default">По умолчанию</string>
 </resources>

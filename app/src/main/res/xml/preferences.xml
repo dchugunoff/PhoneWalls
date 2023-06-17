@@ -12,6 +12,17 @@
             android:dialogTitle="@string/select_language"
             android:summary="%s"
             />
+
+        <ListPreference
+            android:key="theme"
+            android:title="@string/select_theme"
+            android:defaultValue="default"
+            android:entries="@array/theme_entries"
+            android:entryValues="@array/theme_values"
+            android:dialogTitle="@string/select_theme"
+            android:summary="%s"
+            />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

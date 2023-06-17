@@ -2,10 +2,9 @@ package com.chugunov.phonewalls.presentation
 
 import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.preference.PreferenceManager
 import com.chugunov.phonewalls.R
@@ -21,18 +20,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val language = sharedPreferences.getString("language", "")
+        val language = sharedPreferences.getString(LANGUAGE_KEY, "")
+        val theme = sharedPreferences.getString(THEME_KEY, "")
         setLocale(language)
+        setTheme(theme)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         bottomNavView = binding.bottomNavView
-
-        Log.d("Prefer", "${sharedPreferences.getString("language", "")}")
-        Log.d("Prefer", "${sharedPreferences.contains("language")}")
-        Log.d("Prefer", "${language}")
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
@@ -69,8 +64,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val language = sharedPreferences.getString(getString(R.string.language_key), "")
+        val sharedPreferences: SharedPreferences =
+            PreferenceManager.getDefaultSharedPreferences(this)
+        val language = sharedPreferences.getString(LANGUAGE_KEY, "")
         setLocale(language)
         recreate()
     }
@@ -86,7 +82,25 @@ class MainActivity : AppCompatActivity() {
 
             createConfigurationContext(configuration)
             resources.updateConfiguration(configuration, resources.displayMetrics)
-            Log.d("Prefer", "1")
         }
+    }
+
+    private fun setTheme(theme: String?) {
+        when(theme) {
+            "light" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            "dark" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            "default" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+        }
+    }
+
+    companion object {
+        const val LANGUAGE_KEY = "language"
+        const val THEME_KEY = "theme"
     }
 }
