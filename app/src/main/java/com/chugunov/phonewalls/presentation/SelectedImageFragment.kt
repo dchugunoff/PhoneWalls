@@ -11,7 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import coil.ImageLoader
 import coil.load
+import coil.request.CachePolicy
 import com.chugunov.phonewalls.R
 import com.chugunov.phonewalls.data.downloader.ImageDownloader
 import com.chugunov.phonewalls.databinding.FragmentSelectedImageBinding
@@ -39,9 +41,14 @@ class SelectedImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val imageUrl = args.imageArgs.urls.full
-        binding.selectedImage.load(imageUrl) {
-            crossfade(true)
+        val imageUrl = args.imageArgs.urls.regular
+        val imgLoader = ImageLoader.Builder(requireContext())
+            .memoryCachePolicy(CachePolicy.ENABLED)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .build()
+        binding.selectedImage.load(imageUrl, imgLoader) {
+            crossfade(false)
+            diskCachePolicy(CachePolicy.ENABLED)
         }
         binding.setWallpaperButton.setOnClickListener {
             val wallpaperDialog = WallpaperDialog(requireContext())

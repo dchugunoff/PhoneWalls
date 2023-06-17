@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.request.CachePolicy
 import com.chugunov.phonewalls.databinding.ImagesCardBinding
 import com.chugunov.phonewalls.domain.model.UnsplashPhoto
 
@@ -30,6 +31,7 @@ class ImagesAdapter : ListAdapter<UnsplashPhoto, ImagesAdapter.ImageViewHolder>(
 
     inner class ImageViewHolder(private val binding: ImagesCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         init {
             binding.root.setOnClickListener {
                 val position = adapterPosition
@@ -45,7 +47,10 @@ class ImagesAdapter : ListAdapter<UnsplashPhoto, ImagesAdapter.ImageViewHolder>(
         }
 
         fun bind(unsplashPhoto: UnsplashPhoto) {
-            binding.ivImage.load(unsplashPhoto.urls.full)
+            binding.ivImage.load(unsplashPhoto.urls.regular) {
+                diskCachePolicy(CachePolicy.ENABLED)
+            }
+
         }
 
     }
