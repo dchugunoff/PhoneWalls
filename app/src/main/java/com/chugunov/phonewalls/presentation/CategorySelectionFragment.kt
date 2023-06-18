@@ -5,11 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.navigation.NavOptions
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProvider
 import com.chugunov.phonewalls.databinding.FragmentCategorySelectionBinding
-import com.chugunov.phonewalls.domain.model.Category
 
 class CategorySelectionFragment : Fragment() {
 
@@ -17,9 +14,10 @@ class CategorySelectionFragment : Fragment() {
     private val binding: FragmentCategorySelectionBinding
         get() = _binding ?: throw RuntimeException("FragmentCategorySelectionBinding == null")
 
-    private val categoryAdapter: CategoryAdapter by lazy { CategoryAdapter(viewModel.categoryList) }
 
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: CategoryViewModel by lazy {
+        ViewModelProvider(this)[CategoryViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,19 +30,11 @@ class CategorySelectionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.adapter = categoryAdapter
-        categoryAdapter.setOnItemClickListener(object : CategoryAdapter.OnCategoryClickListener {
-            override fun onItemClick(category: Category) {
-                val action =
-                    CategorySelectionFragmentDirections.actionCategorySelectionFragmentToImagesFragment(
-                        category.params
-                    )
-                val navOptions = NavOptions.Builder()
-                    .setLaunchSingleTop(true)
-                    .build()
-                findNavController().navigate(action, navOptions)
-            }
-        })
+        val adapter = CategoryAdapter()
+        binding.recyclerView.adapter = adapter
+        viewModel.categoryList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
 
