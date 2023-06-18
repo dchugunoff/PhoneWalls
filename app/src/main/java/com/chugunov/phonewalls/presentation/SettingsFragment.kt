@@ -2,6 +2,9 @@ package com.chugunov.phonewalls.presentation
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.ListPreference
 import androidx.preference.Preference
@@ -19,6 +22,16 @@ class SettingsFragment : PreferenceFragmentCompat(),
     private lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var themePreference: ListPreference
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val view = super.onCreateView(inflater, container, savedInstanceState)
+        view.setPadding(-150, 20, 20, 20)
+        return view
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
