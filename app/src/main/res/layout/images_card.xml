@@ -13,7 +13,7 @@
         android:layout_height="300dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        tools:src="@drawable/cats_category"
+        tools:src="@drawable/cars_category"
         app:shapeAppearanceOverlay="@style/RoundedCorners"/>
 
 </LinearLayout>

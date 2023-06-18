@@ -31,7 +31,7 @@ class CategoryAdapter : ListAdapter<Category, CategoryAdapter.CategoryViewHolder
 
         fun bind(category: Category) {
             binding.categoryName.text = category.name
-            binding.categoryImage.load(category.imageId)
+            binding.categoryImage.setImageResource(category.imageId)
             binding.root.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -48,7 +48,7 @@ class CategoryAdapter : ListAdapter<Category, CategoryAdapter.CategoryViewHolder
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Category>() {
             override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
-                return oldItem.imageId == newItem.imageId
+                return oldItem.name == newItem.name
             }
 
             override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
