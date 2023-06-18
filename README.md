@@ -20,8 +20,12 @@ Once a category is selected, users are taken to the Images in Selected Category 
 ### Screen 3: Selected Image with Download/Set Wallpaper Option
 When a specific image is selected from the Images in Selected Category screen, users are presented with the Selected Image screen. Here, the chosen image is displayed prominently, and users have the option to download the image or set it as their device's wallpaper. This screen provides convenient functionality to personalize the user's device.
 
+![Third screen](https://github.com/dchugunoff/PhoneWalls/blob/master/images/thrid_dark.png)
+
 ### Screen 4: Settings
 The Settings screen allows users to access and modify various application settings. Users can customize the app's theme and language preferences according to their preferences. This screen offers a seamless way to personalize the user experience and adapt the app to their needs.
+
+![Light theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/fourth_light.png)
 
 # Technologies
 Brief overview of the technologies used.
