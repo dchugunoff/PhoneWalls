@@ -45,7 +45,7 @@ class ImagesFragment : Fragment() {
         val adapter = ImagesAdapter()
         binding.imagesRecyclerView.adapter = adapter
         viewModel.viewModelScope.launch {
-            viewModel.getImages(params)
+            viewModel.getImages(params, requireContext())
         }
         viewModel.imagesList.observe(viewLifecycleOwner) {
             adapter.submitList(it)

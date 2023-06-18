@@ -16,4 +16,7 @@
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="theme_default">Default</string>
+    <string name="no_internet_connection">No internet connection. Please check your connection.</string>
+    <string name="request_timeout">Request timeout. Please try again later.</string>
+    <string name="request_failed">Request failed. Please try again.</string>
 </resources>

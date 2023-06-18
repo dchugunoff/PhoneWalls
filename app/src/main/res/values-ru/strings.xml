@@ -16,4 +16,7 @@
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Темная</string>
     <string name="theme_default">По умолчанию</string>
+    <string name="no_internet_connection">Нет соединения с интернетом. Пожалуйста, проверьте подключение.</string>
+    <string name="request_timeout">Превышено время ожидания запроса. Попробуйте снова.</string>
+    <string name="request_failed">Запрос не выполнен. Попробуйте снова.</string>
 </resources>
