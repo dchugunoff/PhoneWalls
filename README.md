@@ -9,11 +9,13 @@ PhoneWallpaper is a simple mobile application that allows users to easily change
 ## This repository contains a mobile application consisting of four screens. Here's a brief description of each screen:
 ### Screen 1: Categories
 The Categories screen provides a list of categories for users to choose from. It allows users to explore different image categories and select the desired category for further viewing.
+
 ![Light theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/first_light.png)
 
 ### Screen 2: Images in Selected Category
 Once a category is selected, users are taken to the Images in Selected Category screen. This screen displays a collection of images belonging to the chosen category. Users can scroll through the images to find the one they like.
-![Light theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/second_light.png)
+
+![Light theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/s_light.png)
 
 ### Screen 3: Selected Image with Download/Set Wallpaper Option
 When a specific image is selected from the Images in Selected Category screen, users are presented with the Selected Image screen. Here, the chosen image is displayed prominently, and users have the option to download the image or set it as their device's wallpaper. This screen provides convenient functionality to personalize the user's device.
