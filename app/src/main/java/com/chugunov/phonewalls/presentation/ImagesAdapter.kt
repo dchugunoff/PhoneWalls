@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.request.CachePolicy
+import com.chugunov.phonewalls.R
 import com.chugunov.phonewalls.databinding.ImagesCardBinding
 import com.chugunov.phonewalls.domain.model.UnsplashPhoto
 
@@ -48,6 +49,7 @@ class ImagesAdapter : ListAdapter<UnsplashPhoto, ImagesAdapter.ImageViewHolder>(
 
         fun bind(unsplashPhoto: UnsplashPhoto) {
             binding.ivImage.load(unsplashPhoto.urls.regular) {
+                placeholder(R.drawable.loading_animation)
                 diskCachePolicy(CachePolicy.ENABLED)
             }
 
