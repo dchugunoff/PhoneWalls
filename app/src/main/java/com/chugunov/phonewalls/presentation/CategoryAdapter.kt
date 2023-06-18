@@ -2,37 +2,59 @@ package com.chugunov.phonewalls.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.chugunov.phonewalls.domain.model.Category
+import coil.load
 import com.chugunov.phonewalls.databinding.CategoryItemCardBinding
+import com.chugunov.phonewalls.domain.model.Category
 
-class CategoryAdapter(private val categoryList: MutableLiveData<ArrayList<Category>>) :
-    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
-
-
-    class CategoryViewHolder(private val binding: CategoryItemCardBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(category: Category) {
-            binding.categoryImage.setImageResource(category.imageId)
-            binding.categoryName.text = category.name
-        }
-    }
-
+class CategoryAdapter : ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val binding =
-            CategoryItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CategoryItemCardBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return CategoryViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        val list = categoryList.value
-        return list?.size ?: 0
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+        val category = getItem(position)
+        holder.bind(category)
     }
 
-    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        val category = categoryList.value?.get(position)
-        category?.let { holder.bind(it) }
+
+    inner class CategoryViewHolder(private val binding: CategoryItemCardBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(category: Category) {
+            binding.categoryName.text = category.name
+            binding.categoryImage.setImageResource(category.imageId)
+            binding.root.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val action =
+                        CategorySelectionFragmentDirections.actionCategorySelectionFragmentToImagesFragment(
+                            category.params
+                        )
+                    it.findNavController().navigate(action)
+                }
+            }
+        }
+    }
+
+    companion object {
+        private val DiffCallback = object : DiffUtil.ItemCallback<Category>() {
+            override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
+                return oldItem.name == newItem.name
+            }
+
+            override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
+                return oldItem == newItem
+            }
+
+        }
     }
 }

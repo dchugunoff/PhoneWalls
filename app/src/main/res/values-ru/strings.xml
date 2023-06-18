@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">PhoneWalls</string>
+    <string name="wallpaper">Главный экран</string>
+    <string name="lock_screen">Экран блокировки</string>
+    <string name="wallpaper_and_lock_screen">Домашний экран и экран блокировки</string>
+    <string name="download">Скачать</string>
+    <string name="set_as_wallpaper">Применить</string>
+    <string name="apply_to">Применить к</string>
+    <string name="settings">Настройки</string>
+    <string name="categories">Категории</string>
+    <string name="language_english">Английский</string>
+    <string name="language_russian">Русский</string>
+    <string name="select_language">Выберите язык</string>
+    <string name="theme_settings">Настройки темы</string>
+    <string name="select_theme">Выберите тему</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="theme_default">По умолчанию</string>
+    <string name="no_internet_connection">Нет соединения с интернетом. Пожалуйста, проверьте подключение.</string>
+    <string name="request_timeout">Превышено время ожидания запроса. Попробуйте снова.</string>
+    <string name="request_failed">Запрос не выполнен. Попробуйте снова.</string>
+</resources>

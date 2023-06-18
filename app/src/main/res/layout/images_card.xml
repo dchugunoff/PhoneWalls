@@ -2,16 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:layout_margin="16dp"
+    android:layout_margin="4dp"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_image"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        tools:src="@drawable/cats_category"/>
+        android:scaleType="centerCrop"
+        tools:src="@drawable/cars_category"
+        app:shapeAppearanceOverlay="@style/RoundedCorners"/>
 
 </LinearLayout>

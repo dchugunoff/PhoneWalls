@@ -14,9 +14,8 @@ class CategorySelectionFragment : Fragment() {
     private val binding: FragmentCategorySelectionBinding
         get() = _binding ?: throw RuntimeException("FragmentCategorySelectionBinding == null")
 
-    private val categoryAdapter: CategoryAdapter by lazy { CategoryAdapter(viewModel.categoryList) }
 
-    private val viewModel by lazy {
+    private val viewModel: CategoryViewModel by lazy {
         ViewModelProvider(this)[CategoryViewModel::class.java]
     }
 
@@ -31,7 +30,11 @@ class CategorySelectionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.adapter = categoryAdapter
+        val adapter = CategoryAdapter()
+        binding.recyclerView.adapter = adapter
+        viewModel.categoryList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
 
@@ -39,4 +42,6 @@ class CategorySelectionFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+
 }

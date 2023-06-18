@@ -1,23 +1,21 @@
 package com.chugunov.phonewalls.data
 
-import com.chugunov.phonewalls.domain.model.ImageResponse
+import com.chugunov.phonewalls.domain.model.UnsplashResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-const val ORIENTATION = "vertical"
-const val KEY = "37203402-b96c117d858bb4a5e18a643de"
-const val ORDER = "popular"
-const val CATEGORY = "wallpaper"
+const val ORIENTATION = "portrait"
+const val KEY = "_MaEinDAy4KoPDkbm-L-0LXxoaIfmztTO5omFx7GN2Y"
+const val PER_PAGE = 30
 
 interface ImageService {
 
-    @GET("/api/")
+    @GET("search/photos")
     suspend fun getImages(
+        @Query("client_id") clientId: String = KEY,
         @Query("orientation") orientation: String = ORIENTATION,
-        @Query("key") key: String = KEY,
-        @Query("order") order: String = ORDER,
-        @Query("category") category: String = CATEGORY,
-        @Query("q") query: String
-    ): ImageResponse
+        @Query("per_page") perPage: Int = PER_PAGE,
+        @Query("query") query: String
+    ): UnsplashResponse
 
 }
