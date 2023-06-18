@@ -10,12 +10,12 @@ PhoneWallpaper is a simple mobile application that allows users to easily change
 ### Screen 1: Categories
 The Categories screen provides a list of categories for users to choose from. It allows users to explore different image categories and select the desired category for further viewing.
 
-![Light theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/first_light.png)
+![Light theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/first_light.png) ![Dark theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/f_dark.png)
 
 ### Screen 2: Images in Selected Category
 Once a category is selected, users are taken to the Images in Selected Category screen. This screen displays a collection of images belonging to the chosen category. Users can scroll through the images to find the one they like.
 
-![Light theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/s_light.png)
+![Light theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/s_light.png) ![Dark theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/s_dark.png)
 
 ### Screen 3: Selected Image with Download/Set Wallpaper Option
 When a specific image is selected from the Images in Selected Category screen, users are presented with the Selected Image screen. Here, the chosen image is displayed prominently, and users have the option to download the image or set it as their device's wallpaper. This screen provides convenient functionality to personalize the user's device.
@@ -25,7 +25,7 @@ When a specific image is selected from the Images in Selected Category screen, u
 ### Screen 4: Settings
 The Settings screen allows users to access and modify various application settings. Users can customize the app's theme and language preferences according to their preferences. This screen offers a seamless way to personalize the user experience and adapt the app to their needs.
 
-![Light theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/fourth_light.png)
+![Light theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/fourth_light.png) ![Dark theme](https://github.com/dchugunoff/PhoneWalls/blob/master/images/fo_dark.png)
 
 # Technologies
 Brief overview of the technologies used.
